@@ -1,0 +1,10 @@
+<form #myForm="ngForm" (ngSubmit) ="createUser(myForm.value)">
+  <div>nickName: <input ngModel name="nickName" type="text"></div>
+  <div>email: <input ngModel name="email" type="email"></div>
+  <div>cellphone: <input ngModel name="cellphone" type="number"></div>
+  <div ngModelGroup="passwordInfo">
+    <div>password: <input ngModel name="password" type="password"></div>
+    <div>confirm password:<input name="passwordConfirm" type="password"></div>
+  </div>
+  <button type="submit">submit</button>
+</form>
