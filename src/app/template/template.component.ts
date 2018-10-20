@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RecordsService } from '../records.service';
 
 @Component({
   selector: 'app-template',
@@ -7,11 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemplateComponent implements OnInit {
 
-  constructor() { }
+  records = {};
+
+  constructor(private recordsService: RecordsService) { }
 
   ngOnInit() {
   }
+
+
   createUser(customer: any) {
     console.log(customer);
+
+    this.records = this.recordsService.getData();
+    console.log('records =', this.records)
   }
 }
