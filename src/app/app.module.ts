@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { TemplateComponent } from './template/template.component';
 import { FormsModule } from '@angular/forms';
 import { RecordsService } from './records.service';
+import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptorService } from './token-interceptor.service';
+import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 
 @NgModule({
   declarations: [
@@ -13,9 +16,16 @@ import { RecordsService } from './records.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [RecordsService],
+  providers: [RecordsService,LocalStorageService,SessionStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
