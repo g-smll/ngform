@@ -18,28 +18,28 @@ export class TemplateComponent implements OnInit {
   ngOnInit() {
   }
 
-  //RxJS demonstration
-  RSExample(){
-    //定义数组
-    const source = from([{name: 'Joe', age: 20},{name: 'Frank', age: 18}]);
+  // RxJS demonstration
+  RSExample() {
+    // 定义数组
+    const source = from([{name: 'Joe', age: 20}, {name: 'Frank', age: 18}]);
 
-    //提取每个 person 的 name
+    // 提取每个 person 的 name
     const example = source.pipe(map(({ name }) => name));
 
-    //输出每个人的名字
+    // 输出每个人的名字
     example.subscribe( val => console.log(val));
 
   }
 
-  //Do request to login interface
-  login(){
+  // Do request to login interface
+  login() {
     this.http
       .post('http://localhost:8080/api/authenticate', {'username': 'admin', 'password': 'admin'})
       .subscribe(
-        data =>{
-          console.log(data)
+        data => {
+          console.log(data);
         },
-        err =>{
+        err => {
           console.log(err);
         });
   }
@@ -53,5 +53,24 @@ export class TemplateComponent implements OnInit {
     this.login();
 
     this.RSExample();
+  }
+
+  simplest() {
+    console.log('BEGIN simplest');
+    // Promise
+    const myPromise = new Promise(
+      function (resolve, reject) {
+
+        console.log('myPromise is executing');
+
+        setTimeout(() => {
+          console.log('resolving myPromise');
+          resolve('successful result');
+        }, 2000);
+
+      });
+
+    myPromise.then(s => console.log('we recieved: ' + s));
+    console.log('END simplest');
   }
 }
