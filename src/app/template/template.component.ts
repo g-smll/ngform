@@ -73,4 +73,14 @@ export class TemplateComponent implements OnInit {
     myPromise.then(s => console.log('we recieved: ' + s));
     console.log('END simplest');
   }
+
+  simplest1(ms) {
+    const myPromise1 = new Promise( (resolve, reject) => {
+      setTimeout(resolve, ms, 'done');
+    });
+
+    myPromise1.then( (value) => {
+      console.log('value= ' + value);
+    });
+  }
 }
